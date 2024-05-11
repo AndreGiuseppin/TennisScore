@@ -17,8 +17,8 @@ namespace TennisScore.Business.Services.MatchManagementDecorator
             var teste = true;
             while (teste)
             {
-                Console.WriteLine($"Nome: {match.PlayerOne.Name}. Sets: {match.PlayerOne.Sets}. Games: {match.PlayerOne.Games}. Score: {match.PlayerOne.GameScore}");
-                Console.WriteLine($"Nome: {match.PlayerTwo.Name}. Sets: {match.PlayerTwo.Sets}. Games: {match.PlayerTwo.Games}. Score: {match.PlayerTwo.GameScore}");
+                Console.WriteLine($"Nome: {match.PlayerOne.Name}. Sets: {match.PlayerOne.Sets}. Games: {match.PlayerOne.Games}. Score: {match.PlayerOne.GameScore}. AdvantageScore: {match.PlayerOne.AdvantageScore}");
+                Console.WriteLine($"Nome: {match.PlayerTwo.Name}. Sets: {match.PlayerTwo.Sets}. Games: {match.PlayerTwo.Games}. Score: {match.PlayerTwo.GameScore}. AdvantageScore: {match.PlayerTwo.AdvantageScore}");
 
                 Console.WriteLine($"Saque inicial do {match.CurrentlyPlayer.Name}");
 
@@ -40,6 +40,7 @@ namespace TennisScore.Business.Services.MatchManagementDecorator
                     else
                     {
                         match.NextPlayer.AddGameScore();
+                        match.ValidatePlayerScore();
                         match.ChangePlayersPosition();
                         continue;
                     }

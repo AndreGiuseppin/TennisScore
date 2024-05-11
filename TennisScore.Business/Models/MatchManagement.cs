@@ -39,5 +39,34 @@
 
             ResetPlayersInitialShootRetry();
         }
+
+        public void ValidatePlayerScore()
+        {
+            if (PlayerOne.AdvantageScore == 1 && PlayerTwo.AdvantageScore == 1)
+            {
+                PlayerOne.AdvantageScore = 0;
+                PlayerTwo.AdvantageScore = 0;
+            }
+
+            if (PlayerOne.AdvantageScore == 2 && PlayerTwo.AdvantageScore == 0)
+            {
+                PlayerOne.Games += 1;
+                ResetPlayer();
+            }
+
+            if (PlayerTwo.AdvantageScore == 2 && PlayerOne.AdvantageScore == 0)
+            {
+                PlayerTwo.Games += 1;
+                ResetPlayer();
+            }
+        }
+
+        public void ResetPlayer()
+        {
+            PlayerOne.AdvantageScore = 0;
+            PlayerOne.GameScore = 0;
+            PlayerTwo.AdvantageScore = 0;
+            PlayerTwo.GameScore = 0;
+        }
     }
 }
