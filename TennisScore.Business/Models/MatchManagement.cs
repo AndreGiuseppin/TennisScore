@@ -36,6 +36,8 @@
             var currentlyPlayer = CurrentlyPlayer;
             CurrentlyPlayer = NextPlayer;
             NextPlayer = currentlyPlayer;
+
+            ResetPlayersInitialShootRetry();
         }
     }
 }

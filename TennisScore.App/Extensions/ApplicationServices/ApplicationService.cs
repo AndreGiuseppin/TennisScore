@@ -8,7 +8,8 @@ namespace TennisScore.App.Extensions.ApplicationServices
     {
         public static IServiceCollection AddServices(this IServiceCollection service)
         {
-            service.AddScoped<IMatchManagement, ValidateInitialShootService>();
+            service.AddScoped<IMatchManagement, StartRallyService>();
+            service.Decorate<IMatchManagement, ValidateInitialShootService>();
             service.Decorate<IMatchManagement, SetChoiceService>();
 
             return service;
