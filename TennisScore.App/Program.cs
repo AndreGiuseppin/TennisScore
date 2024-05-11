@@ -13,4 +13,9 @@ IServiceProvider provider = serviceScope.ServiceProvider;
 var matchManagement = provider.GetRequiredService<IMatchManagement>();
 
 MatchManagement match = new();
+match.PlayerOne = new Player("Jogador 1");
+match.PlayerTwo = new Player("Jogador 2");
+match.CurrentlyPlayer = match.PlayerOne;
+match.NextPlayer = match.PlayerTwo;
+
 matchManagement.Process(match);
