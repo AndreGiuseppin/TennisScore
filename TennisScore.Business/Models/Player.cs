@@ -11,6 +11,7 @@
         public int Sets { get; set; }
         public int Games { get; set; }
         public int GameScore { get; set; }
+        public int AdvantageScore { get; set; }
         public bool CanRetryInitialShoot { get; set; } = true;
 
         public void CannotRetryAnymore() => CanRetryInitialShoot = false;
@@ -22,6 +23,12 @@
             };
 
             var indexScore = scores.IndexOf(GameScore);
+
+            if (indexScore == scores.Count() - 1)
+            {
+                AdvantageScore += 1;
+                return;
+            }
 
             GameScore = scores[indexScore + 1];
         }

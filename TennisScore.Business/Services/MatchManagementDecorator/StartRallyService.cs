@@ -24,6 +24,7 @@ namespace TennisScore.Business.Services.MatchManagementDecorator
                 else
                 {
                     match.NextPlayer.AddGameScore();
+                    match.ValidatePlayerScore();
                     match.ChangePlayersPosition();
                     break;
                 }
