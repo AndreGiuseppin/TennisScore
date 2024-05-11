@@ -5,6 +5,13 @@ namespace TennisScore.Business.Services.MatchManagementDecorator
 {
     public class ValidateInitialShootService : IMatchManagement
     {
+        private readonly IMatchManagement _match;
+
+        public ValidateInitialShootService(IMatchManagement match)
+        {
+            _match = match ?? throw new ArgumentNullException(nameof(match));
+        }
+
         public void Process(MatchManagement match)
         {
             var teste = true;
@@ -20,9 +27,7 @@ namespace TennisScore.Business.Services.MatchManagementDecorator
 
                 if (shootChoice == "1")
                 {
-                    match.CurrentlyPlayer.AddGameScore();
-                    match.ChangePlayersPosition();
-                    match.ResetPlayersInitialShootRetry();
+                    _match.Process(match);
                     continue;
                 }
                 else if (shootChoice == "2")
@@ -36,7 +41,6 @@ namespace TennisScore.Business.Services.MatchManagementDecorator
                     {
                         match.NextPlayer.AddGameScore();
                         match.ChangePlayersPosition();
-                        match.ResetPlayersInitialShootRetry();
                         continue;
                     }
                 }
