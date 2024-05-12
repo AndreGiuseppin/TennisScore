@@ -1,4 +1,5 @@
-
+https://tecnoartengenharia.com.br/regras-do-tenis/#:~:text=Cada%20jogador%20fica%20de%20um,de%20evitar%20o%20segundo%20quique.
+https://revistatenis.uol.com.br/artigo/conte-certo_6024.html
 
 // Inicio da partida
 // Melhor de 5 sets ou 3 sets

@@ -193,5 +193,14 @@
             IsTieBreak = false;
             ReplayMatch = false;
         }
+
+        public void SetGameWinner()
+        {
+            NextPlayer.AddGameScore();
+            ValidatePlayerScore();
+            ChangePlayersPosition();
+            ValidateGames();
+            ValidateSets();
+        }
     }
 }
