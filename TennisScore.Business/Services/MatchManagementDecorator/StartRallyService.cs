@@ -23,11 +23,7 @@ namespace TennisScore.Business.Services.MatchManagementDecorator
                 }
                 else
                 {
-                    match.NextPlayer.AddGameScore();
-                    match.ValidatePlayerScore();
-                    match.ChangePlayersPosition();
-                    match.ValidateGames();
-                    match.ValidateSets();
+                    match.SetGameWinner();
                     break;
                 }
             }
