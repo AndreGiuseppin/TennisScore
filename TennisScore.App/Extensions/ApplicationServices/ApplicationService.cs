@@ -10,6 +10,7 @@ namespace TennisScore.App.Extensions.ApplicationServices
         {
             service.AddScoped<IMatchManagement, StartRallyService>();
             service.Decorate<IMatchManagement, ValidateInitialShootService>();
+            service.Decorate<IMatchManagement, MatchManagementService>();
             service.Decorate<IMatchManagement, SetChoiceService>();
 
             return service;

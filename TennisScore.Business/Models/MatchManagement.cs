@@ -4,15 +4,34 @@
     {
         public Player PlayerOne { get; set; }
         public Player PlayerTwo { get; set; }
-        public int TotalSets { get; private set; }
-        public string ShootChoice { get; private set; } = string.Empty;
-        public Player MatchWinner { get; set; }
         public Player CurrentlyPlayer { get; set; }
         public Player NextPlayer { get; set; }
+        public Player? MatchWinner { get; set; }
+        public int TotalSets { get; private set; }
+        public string ShootChoice { get; private set; } = string.Empty;
+        public string SetChoice { get; private set; } = string.Empty;
         public bool IsTieBreak { get; set; } = false;
+        public bool ReplayMatch { get; set; } = false;
 
+        public void SetReplayMatch() => ReplayMatch = true;
 
-        public void WithSets(int set) => TotalSets = set;
+        public void WithSets(int set)
+        {
+            if (set == 1) TotalSets = 3;
+            if (set == 2) TotalSets = 5;
+        }
+
+        public string ReturnSetsChoice()
+        {
+            var choices = new List<string>
+            {
+                "1 - 3 SETS",
+                "2 - 5 SETS"
+            };
+
+            return SetChoice = string.Join("\n", choices);
+        }
+
         public string ReturnShootChoice()
         {
             var choices = new List<string>
@@ -100,9 +119,9 @@
 
             if (PlayerOne.Games == 6 && PlayerTwo.Games == 6)
             {
-                IsTieBreak = true;
                 ResetPlayer();
                 ResetGames();
+                IsTieBreak = true;
             }
 
             if (PlayerOne.Games == 7 && PlayerTwo.Games <= PlayerOne.Games - 2)
@@ -162,6 +181,17 @@
             PlayerOne.Games = 0;
             PlayerTwo.Games = 0;
             IsTieBreak = false;
+        }
+
+        public void ResetMatch()
+        {
+            ResetPlayer();
+            ResetGames();
+            PlayerOne.Sets = 0;
+            PlayerTwo.Sets = 0;
+            MatchWinner = null;
+            IsTieBreak = false;
+            ReplayMatch = false;
         }
     }
 }

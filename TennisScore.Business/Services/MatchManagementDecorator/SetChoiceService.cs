@@ -14,14 +14,21 @@ namespace TennisScore.Business.Services.MatchManagementDecorator
 
         public void Process(MatchManagement match)
         {
-            Console.WriteLine("Escolha quantos SETS terá a partida:");
-            Console.WriteLine("1 - 3 SETS \n2 - 5 SETS");
-            var totalSet = Console.ReadLine();
+            while (true)
+            {
+                Console.WriteLine("\nEscolha quantos SETS terá a partida:");
+                Console.WriteLine(match.ReturnSetsChoice());
+                var totalSet = Console.ReadLine();
 
-            match.WithSets(Convert.ToInt32(totalSet));
+                match.WithSets(Convert.ToInt32(totalSet));
 
-            _match.Process(match);
-            return;
+                _match.Process(match);
+
+                if (match.ReplayMatch)
+                    continue;
+
+                break;
+            }
         }
     }
 }
