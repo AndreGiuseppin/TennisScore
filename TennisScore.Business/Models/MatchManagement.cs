@@ -6,6 +6,7 @@
         public Player PlayerTwo { get; set; }
         public int TotalSets { get; private set; }
         public string ShootChoice { get; private set; } = string.Empty;
+        public Player MatchWinner { get; set; }
         public Player CurrentlyPlayer { get; set; }
         public Player NextPlayer { get; set; }
         public bool IsTieBreak { get; set; } = false;
@@ -116,6 +117,35 @@
                 PlayerTwo.Sets += 1;
                 ResetPlayer();
                 ResetGames();
+            }
+        }
+
+        public void ValidateSets()
+        {
+            if (TotalSets == 3)
+            {
+                if (PlayerOne.Sets == 2)
+                {
+                    MatchWinner = PlayerOne;
+                }
+
+                if (PlayerTwo.Sets == 2)
+                {
+                    MatchWinner = PlayerTwo;
+                }
+            }
+
+            if (TotalSets == 5)
+            {
+                if (PlayerOne.Sets == 3)
+                {
+                    MatchWinner = PlayerOne;
+                }
+
+                if (PlayerTwo.Sets == 3)
+                {
+                    MatchWinner = PlayerTwo;
+                }
             }
         }
 
