@@ -12,7 +12,7 @@ namespace TennisScore.Business.Services.MatchManagementDecorator
             while (true)
             {
 
-                Console.WriteLine($"Proxima jogada do {match.CurrentlyPlayer.Name}");
+                Console.WriteLine($"\nProxima jogada do {match.CurrentlyPlayer.Name}");
                 Console.WriteLine("1 - Rebatida com sucesso \n2 - Rebatida sem sucesso");
                 var choice = Console.ReadLine();
 
@@ -26,6 +26,8 @@ namespace TennisScore.Business.Services.MatchManagementDecorator
                     match.NextPlayer.AddGameScore();
                     match.ValidatePlayerScore();
                     match.ChangePlayersPosition();
+                    match.ValidateGames();
+                    match.ValidateSets();
                     break;
                 }
             }
