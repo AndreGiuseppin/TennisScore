@@ -17,8 +17,9 @@ namespace TennisScore.Business.Services.MatchManagementDecorator
             var teste = true;
             while (teste)
             {
-                Console.WriteLine($"Nome: {match.PlayerOne.Name}. Sets: {match.PlayerOne.Sets}. Games: {match.PlayerOne.Games}. Score: {match.PlayerOne.GameScore}. AdvantageScore: {match.PlayerOne.AdvantageScore}");
-                Console.WriteLine($"Nome: {match.PlayerTwo.Name}. Sets: {match.PlayerTwo.Sets}. Games: {match.PlayerTwo.Games}. Score: {match.PlayerTwo.GameScore}. AdvantageScore: {match.PlayerTwo.AdvantageScore}");
+                match.ValidateGames();
+                Console.WriteLine($"Nome: {match.PlayerOne.Name}. Sets: {match.PlayerOne.Sets}. Games: {match.PlayerOne.Games}. Score: {match.PlayerOne.GameScore}. AdvantageScore: {match.PlayerOne.AdvantageScore}. Is Tie-Break: {match.IsTieBreak}");
+                Console.WriteLine($"Nome: {match.PlayerTwo.Name}. Sets: {match.PlayerTwo.Sets}. Games: {match.PlayerTwo.Games}. Score: {match.PlayerTwo.GameScore}. AdvantageScore: {match.PlayerTwo.AdvantageScore}. Is Tie-Break: {match.IsTieBreak}");
 
                 Console.WriteLine($"Saque inicial do {match.CurrentlyPlayer.Name}");
 

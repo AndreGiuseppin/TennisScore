@@ -8,6 +8,7 @@
         public string ShootChoice { get; private set; } = string.Empty;
         public Player CurrentlyPlayer { get; set; }
         public Player NextPlayer { get; set; }
+        public bool IsTieBreak { get; set; } = false;
 
 
         public void WithSets(int set) => TotalSets = set;
@@ -61,12 +62,76 @@
             }
         }
 
+        public void ValidateGames()
+        {
+            if (IsTieBreak)
+            {
+                if (PlayerOne.Games >= 7 && PlayerTwo.Games <= PlayerOne.Games - 2)
+                {
+                    PlayerOne.Sets += 1;
+                    ResetPlayer();
+                    ResetGames();
+                }
+
+                if (PlayerTwo.Games >= 7 && PlayerOne.Games <= PlayerTwo.Games - 2)
+                {
+                    PlayerTwo.Sets += 1;
+                    ResetPlayer();
+                    ResetGames();
+                }
+
+                return;
+            }
+
+            if (PlayerOne.Games == 6 && PlayerTwo.Games <= PlayerOne.Games - 2)
+            {
+                PlayerOne.Sets += 1;
+                ResetPlayer();
+                ResetGames();
+            }
+
+            if (PlayerTwo.Games == 6 && PlayerOne.Games <= PlayerTwo.Games - 2)
+            {
+                PlayerTwo.Sets += 1;
+                ResetPlayer();
+                ResetGames();
+            }
+
+            if (PlayerOne.Games == 6 && PlayerTwo.Games == 6)
+            {
+                IsTieBreak = true;
+                ResetPlayer();
+                ResetGames();
+            }
+
+            if (PlayerOne.Games == 7 && PlayerTwo.Games <= PlayerOne.Games - 2)
+            {
+                PlayerOne.Sets += 1;
+                ResetPlayer();
+                ResetGames();
+            }
+
+            if (PlayerTwo.Games == 7 && PlayerOne.Games <= PlayerTwo.Games - 2)
+            {
+                PlayerTwo.Sets += 1;
+                ResetPlayer();
+                ResetGames();
+            }
+        }
+
         public void ResetPlayer()
         {
             PlayerOne.AdvantageScore = 0;
             PlayerOne.GameScore = 0;
             PlayerTwo.AdvantageScore = 0;
             PlayerTwo.GameScore = 0;
+        }
+
+        public void ResetGames()
+        {
+            PlayerOne.Games = 0;
+            PlayerTwo.Games = 0;
+            IsTieBreak = false;
         }
     }
 }
