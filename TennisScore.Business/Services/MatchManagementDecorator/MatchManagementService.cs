@@ -1,4 +1,5 @@
-﻿using TennisScore.Business.Interfaces.Services;
+﻿using TennisScore.Business.Interfaces;
+using TennisScore.Business.Interfaces.Services;
 using TennisScore.Business.Models;
 
 namespace TennisScore.Business.Services.MatchManagementDecorator
@@ -6,10 +7,12 @@ namespace TennisScore.Business.Services.MatchManagementDecorator
     public class MatchManagementService : IMatchManagement
     {
         private readonly IMatchManagement _match;
+        private readonly IConsole _console;
 
-        public MatchManagementService(IMatchManagement match)
+        public MatchManagementService(IMatchManagement match, IConsole console)
         {
             _match = match ?? throw new ArgumentNullException(nameof(match));
+            _console = console ?? throw new ArgumentNullException(nameof(console));
         }
 
         public void Process(MatchManagement match)
@@ -21,7 +24,7 @@ namespace TennisScore.Business.Services.MatchManagementDecorator
                     Console.WriteLine($"\nVencedor da partida: {match.MatchWinner.Name}");
                     Console.WriteLine("Deseja jogar novamente?");
                     Console.WriteLine("1 - Sim \n2 - Não");
-                    var playAgain = Console.ReadLine();
+                    var playAgain = _console.ReadLine();
 
                     if (playAgain == "1")
                     {
